@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { BuiltinFunctionCall } from '@angular/compiler/src/compiler_util/expression_converter';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Employee } from './employee';
 import { EmployeeService } from './employee.service';
 
@@ -31,8 +32,7 @@ export class AppComponent implements OnInit {
     );
   }
 
-  public onOpenModal(employee: Employee|null, mode: string): void {
-
+  public onOpenModal(employee: Employee | null, mode: string): void {
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
 
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
     if (mode === 'delete') {
       button.setAttribute('data-target', '#deleteEmployeeModal');
     }
-    
+
     if (mode === 'edit') {
       button.setAttribute('data-target', '#updateEmployeeModal');
     }
@@ -56,4 +56,6 @@ export class AppComponent implements OnInit {
     container?.appendChild(button);
     button.click();
   }
+
+  public onAddEmployee(addForm: NgForm): void {}
 }
