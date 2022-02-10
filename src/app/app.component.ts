@@ -37,6 +37,29 @@ export class AppComponent implements OnInit {
     );
   }
 
+  //search functionality
+  public searchEmployees(key: string): void {
+    const results: Employee[] = [];
+    for (const employee of this.employees) {
+      if (
+        employee.name.toLocaleLowerCase().indexOf(key.toLocaleLowerCase()) !==
+          -1 ||
+        employee.email.toLocaleLowerCase().indexOf(key.toLocaleLowerCase()) !==
+          -1 ||
+        employee.phone.toLocaleLowerCase().indexOf(key.toLocaleLowerCase()) !==
+          -1 ||
+        employee.jobTitle.toLocaleLowerCase().indexOf(key.toLocaleLowerCase()) !==
+          -1
+      ) {
+        results.push(employee);
+      }
+    }
+    this.employees = results;
+    if (results.length === 0 || !key) { //display all results if there is no result or key
+      this.getEmployees();
+    }
+  }
+
   // open modals
   public onOpenModal(employee: Employee | any, mode: string): void {
     const container = document.getElementById('main-container');
